@@ -1,0 +1,85 @@
+// Calculo del version code
+def BUILD_DATE_TIME = new Date()
+        .format("yywwuHHmm")
+        .toInteger()
+logger.lifecycle(
+        "Using buildDateTime: ${BUILD_DATE_TIME}")
+
+// Nombre del build
+// https://en.wikipedia.org/wiki/Category:Middle-earth_cities_and_towns
+// Aldburg,Almaida,Alqualondë,Andúnië,Annúminas,Armenelos,Avallónë
+def BUILD_NAME = "Aldburg"
+
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
+    defaultConfig {
+        applicationId "cl.ucn.disc.dam.discnews"
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode BUILD_DATE_TIME
+        versionName "${BUILD_NAME}-${BUILD_DATE_TIME}"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
+            crunchPngs true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+            zipAlignEnabled false
+            crunchPngs false
+            versionNameSuffix "-debug"
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packagingOptions{
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+    }
+    lintOptions {
+        abortOnError false
+        // disable 'InlinedApi', 'AllowBackup'
+        showAll true
+        htmlReport true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+
+    // https://mvnrepository.com/artifact/junit/junit
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+
+    // https://mvnrepository.com/artifact/org.assertj/assertj-core
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.8.0'
+
+
+    androidTestImplementation ('com.android.support.test.espresso:espresso-core:3.0.1', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.6'
+
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
+
+
+}
