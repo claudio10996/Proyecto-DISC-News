@@ -2,6 +2,8 @@ package cl.ucn.disc.dam.discnews.model;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import java.time.LocalDateTime;
+
+import lombok.Builder;
 import lombok.Getter;
 
 /**
@@ -10,6 +12,7 @@ import lombok.Getter;
  * @author Claudio González Salazar
  */
 
+@Builder
 public final class Noticia {
 
     /**
