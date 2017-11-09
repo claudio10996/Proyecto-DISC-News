@@ -1,8 +1,10 @@
-package cl.ucn.disc.dam.discnews;
+package cl.ucn.disc.dam.discnews.Activities;
 
 import android.app.Activity;
 import android.app.ListActivity;
 import android.os.Bundle;
+
+import cl.ucn.disc.dam.discnews.R;
 
 public class MainActivity extends ListActivity {
 
