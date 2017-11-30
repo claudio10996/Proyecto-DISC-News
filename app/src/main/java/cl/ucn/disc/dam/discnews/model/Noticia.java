@@ -3,8 +3,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import java.time.LocalDateTime;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 /**
  * Representa una noticia para el sistema de noticias del DISC

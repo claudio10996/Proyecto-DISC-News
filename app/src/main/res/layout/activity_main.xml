@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2017 by Diego Urrutia-Astorga http://durrutia.com This work is licensed under the Creative Commons Attribution 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/
+  -->
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cl.ucn.disc.dam.discnews.Activities.MainActivity">
+    tools:context=".Activities.MainActivity">
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="390dp"
-        android:layout_height="576dp"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        tools:layout_editor_absoluteX="5dp"
-        tools:layout_editor_absoluteY="16dp" />
 </android.support.constraint.ConstraintLayout>

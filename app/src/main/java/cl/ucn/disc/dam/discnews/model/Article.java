@@ -2,91 +2,145 @@
 
 package cl.ucn.disc.dam.discnews.model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+
+
+import com.raizlabs.android.dbflow.annotation.PrimaryKey;
+import com.raizlabs.android.dbflow.annotation.Column;
+
+import com.raizlabs.android.dbflow.annotation.Table;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import lombok.Builder;
+import java.util.Date;
+import java.util.UUID;
+
+import cl.ucn.disc.dam.discnews.dao.AppDatabase;
+import cl.ucn.disc.dam.discnews.dao.SourceConverter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 /**
  * Clase generada vía http://www.jsonschema2pojo.org/
  */
 @Builder
-public class Article {
+@Table(database = AppDatabase.class)
+@AllArgsConstructor
+@NoArgsConstructor
+public final class Article {
 
-    @SerializedName("author")
-    @Expose
-    private String author;
-    @SerializedName("title")
-    @Expose
-    private String title;
-    @SerializedName("description")
-    @Expose
-    private String description;
-    @SerializedName("url")
-    @Expose
-    private String url;
-    @SerializedName("urlToImage")
-    @Expose
-    private String urlToImage;
-    @SerializedName("publishedAt")
-    @Expose
-    private String publishedAt;
+    /**
+     * ID
+     */
+    @PrimaryKey
+    @Getter
+    UUID id;
 
-    public String getAuthor() {
-        return author;
-    }
+    /**
+     * Author
+     */
+    @Getter
+    @Column
+    String author;
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+    /**
+     * Title
+     */
+    @Getter
+    @Column
+    String title;
 
-    public String getTitle() {
-        return title;
-    }
+    /**
+     * Description
+     */
+    @Getter
+    @Column
+    String description;
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    /**
+     * URL: main link
+     */
+    @Getter
+    @Column
+    String url;
 
-    public String getDescription() {
-        return description;
-    }
+    /**
+     * URL: link to image
+     */
+    @Getter
+    @Column
+    String urlToImage;
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    /**
+     * Date: 2017-11-16T19:40:25Z
+     */
+    @Getter
+    @Column
+    Date publishedAt;
 
-    public String getUrl() {
-        return url;
-    }
+    /**
+     * Source
+     */
+    @Getter
+    @Column(typeConverter = SourceConverter.class)
+    Source source;
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getUrlToImage() {
-        return urlToImage;
-    }
-
-    public void setUrlToImage(String urlToImage) {
-        this.urlToImage = urlToImage;
-    }
-
-    public String getPublishedAt() {
-        return publishedAt;
-    }
-
-    public void setPublishedAt(String publishedAt) {
-        this.publishedAt = publishedAt;
-    }
-
+    /**
+     * @return the String representation.
+     */
     @Override
     public String toString() {
-        return ToStringBuilder
-                .reflectionToString(this,
-                        ToStringStyle.MULTI_LINE_STYLE);
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
+
+    /**
+     * Fix the article
+     *
+     * @param article to fix.
+     */
+    public static void fix(final Article article) {
+
+        final StringBuilder sb = new StringBuilder();
+        sb.append(article.title);
+        sb.append("-");
+        sb.append(article.publishedAt);
+
+        // Calculate ID from title + publishedAt
+        article.id = UUID.nameUUIDFromBytes(sb.toString().getBytes());
+
+        if (article.author == null) {
+            article.author = "unknow";
+        }
+    }
+
+
+    /**
+     * Internal article source.
+     */
+    @Builder
+    @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
+    public static final class Source {
+
+        /**
+         *
+         */
+        @Getter
+        String id;
+
+        /**
+         *
+         */
+        @Getter
+        String name;
+
+        /**
+         * @return the String representation.
+         */
+        @Override
+        public String toString() {
+            return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+        }
+
+    }
+
 }

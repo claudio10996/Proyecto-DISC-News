@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/ra_image"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
+            android:text="Image"
+            app:layout_constraintEnd_toStartOf="@+id/ra_date"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            fresco:actualImageScaleType="focusCrop" />
+
+        <TextView
+            android:id="@+id/ra_description"
+            android:layout_width="350dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="156dp"
+            android:layout_marginTop="100dp"
+            android:text="Description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/ra_title"
+            android:layout_width="350dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="156dp"
+            android:layout_marginTop="16dp"
+            android:text="Title"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/ra_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/ra_source"
+            android:layout_width="143dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="160dp"
+            android:text="Fuente"
+            fresco:layout_constraintStart_toStartOf="parent"
+            fresco:layout_constraintTop_toTopOf="parent" />
+
+        <!--<ImageView
+            android:id="@+id/ra_image"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="68dp"
+            app:layout_constraintEnd_toStartOf="@+id/ra_fecha"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        &lt;!&ndash;android:src="@drawable/ic_launcher_foreground"&ndash;&gt;-->
+
+        <TextView
+            android:id="@+id/ra_uuid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="123e4567-e89b-12d3-a456-426655440000"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/ra_date"
+            android:layout_width="350dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="156dp"
+            android:layout_marginTop="44dp"
+            android:text="Fecha"
+            app:layout_constraintBottom_toTopOf="@+id/ra_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.97" />
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>
